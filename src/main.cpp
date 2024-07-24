@@ -1,8 +1,9 @@
 #include "tools/hint.h"
+#include "ui/MainWindow.h"
 // #include "ui/MainWindow.h"
 
 int main() {
-  welcomeMessage();
-  invalidMessage();
-  return 0;
+    MainWindow win = MainWindow();
+    win.mainShow();
+    return 0;
 }

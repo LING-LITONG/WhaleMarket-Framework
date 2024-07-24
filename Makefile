@@ -1,7 +1,7 @@
 .PHONY: clean # 伪目标
 
 # 自定义环境变量
-CXX = g++ # 指定C++编译器
+CXX = clang++ # 指定C++编译器
 
 CXXFLAGS = -I include # 指定头文件目录
 CPPFILES = $(shell find src -name "*.cpp") # 搜索所有的源文件

@@ -1,3 +1,6 @@
 *.o
 .DS_Store
 main
+CMakeLists.txt
+compile_commands.json
+.clangd/

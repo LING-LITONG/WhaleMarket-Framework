@@ -4,16 +4,12 @@
 #include <iostream>
 #include <vector>
 #include <string> // Add this line to include the <string> header file
-
-typedef struct Users {
-    std::string username;
-    std::string password;
-} User;
+#include "admainWin.h"
+#include "UserStruct.h"
 
 class MainWindow {
 public:
     MainWindow();
-    ~MainWindow();
 
     void mainShow();
 
@@ -28,9 +24,18 @@ public:
     void menuChoice(char choice);
 
 private:
-    User admain = {"admin", "123456"};
-    User user = {"user", "123456"};
-    std::vector<User> users = {user};
+    User admain = {"U00000", "admin", "123456"};
+    // User user = {"U0001", "user", "123456"};
+    std::vector<User> users = {{"U00001", "user1", "123456", "12333", "江苏省南京市南大", "10.0"},
+                               {"U00002", "user2", "123456", "12334", "江苏省南京市南大", "100.0"}};
+
+    std::vector<Order> orders = {
+        {"T000001", "M00001", "10.0", "2021-03-14", "U00001", "U00002"},
+        {"T000002", "M00002", "20.0", "2021-03-14", "U00003", "U00001"},
+        // 其他订单信息...
+    };
+
+    AdmainWin *admainWin = new AdmainWin(&users, &orders);
 
     std::string divider = "==================================================";
     std::string adminUsernameLogIfo = "管理员登录";

@@ -1,25 +1,21 @@
 #include "ui/MainWindow.h"
+#include "ui/admainWin.h"
 #include <string>
 
-MainWindow::MainWindow() {
-}
-
-MainWindow::~MainWindow() {
-}
+MainWindow::MainWindow() = default;
 
 void MainWindow::mainShow() {
-    std::cout << divider << std::endl;
-    int i = 1;
-    for (std::string item : menuItems) {
-        std::cout << i << "." << item << "  ";
-        i++;
-    }
-    std::cout << std::endl;
-    std::cout << divider << std::endl;
+    while (true) {
+        std::cout << divider << std::endl;
+        int i = 1;
+        for (const std::string &item : menuItems) {
+            std::cout << i << "." << item << "  ";
+            i++;
+        }
+        std::cout << std::endl;
+        std::cout << divider << std::endl;
 
-    std::cout << "请输入您的选择：";
-
-    while (1) {
+        std::cout << "请输入您的选择：";
         std::string choice;
         std::cin >> choice;
         menuChoice(choice.at(0));
@@ -55,12 +51,13 @@ void MainWindow::userLogin() {
     std::string password;
     std::cin >> password;
 
-    for (User user : users) {
+    for (const User &user : users) {
         if (user.username == username && user.password == password) {
             std::cout << "登录成功" << std::endl;
             return;
         }
     }
+    std::cout << "\033c";
 }
 
 void MainWindow::adminLogin() {
@@ -72,10 +69,11 @@ void MainWindow::adminLogin() {
     std::cin >> adminPassword;
 
     if (admain.username == adminUsername && admain.password == adminPassword) {
-        std::cout << "管理员登录成功" << std::endl;
+        admainWin->mainShow();
     } else {
         std::cout << "管理员登录失败" << std::endl;
     }
+    std::cout << "\033c";
 }
 
 void MainWindow::userRegister() {
@@ -86,8 +84,12 @@ void MainWindow::userRegister() {
     std::string password;
     std::cin >> password;
 
-    User user = {username, password};
+    //TODO(ling): Add more user information
+    User user;
+    user.username = username;
+    user.password = password;
     users.push_back(user);
+    std::cout << "\033c";
 }
 
 void MainWindow::userExit() {
